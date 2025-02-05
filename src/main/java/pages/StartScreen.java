@@ -4,7 +4,6 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.apache.logging.log4j.Logger;
 import utils.LoggerUtility;
 import utils.WaitHelper;
@@ -16,7 +15,6 @@ public class StartScreen {
 
     public StartScreen(AndroidDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
         waitHelper = new WaitHelper(driver);
     }
 
