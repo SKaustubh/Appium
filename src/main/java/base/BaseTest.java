@@ -28,9 +28,6 @@ public class BaseTest {
         try {
             URL url = new URL(ConfigReader.getProperty("serverURL"));
             driver = new AndroidDriver(url, cap);
-
-
-
             System.out.println("App started successfully!");
         } catch (Exception e) {
             System.out.println("Error while starting Appium: " + e.getMessage());

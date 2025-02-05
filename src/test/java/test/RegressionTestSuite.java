@@ -10,9 +10,9 @@ import utils.LoggerUtility;
 import utils.WaitHelper;
 import com.aventstack.extentreports.ExtentTest;
 
-public class LoginTest extends BaseTest {
+public class RegressionTestSuite extends BaseTest {
     LoginPage loginPage;
-    private static final org.apache.logging.log4j.Logger log = LoggerUtility.getLogger(LoginTest.class);
+    private static final org.apache.logging.log4j.Logger log = LoggerUtility.getLogger(RegressionTestSuite.class);
     ExtentTest test;
     WaitHelper waitHelper;
 
@@ -36,12 +36,8 @@ public class LoginTest extends BaseTest {
     public void testLogin() {
         log.info("Starting the login process...");
 
-
-
-
         waitHelper.waitForElementClickable(loginPage.getStartButton());
         loginPage.clickStartButton();
-
 
         test.pass("Login button clicked successfully!");
         log.info("Login button clicked successfully!");

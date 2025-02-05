@@ -21,8 +21,6 @@ public class WaitHelper {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-
-
     // Wait for WebElement to be clickable
     public void waitForElementClickable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
