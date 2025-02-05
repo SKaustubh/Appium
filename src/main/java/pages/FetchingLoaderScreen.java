@@ -2,11 +2,13 @@ package pages;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.LoggerUtility;
 import org.apache.logging.log4j.Logger;
 import utils.WaitHelper;
 
-public class FetchingLoaderScreen {
+public class FetchingLoaderScreen{
 
     AndroidDriver driver;
     private static final Logger log = LoggerUtility.getLogger(FetchingLoaderScreen.class);
@@ -18,19 +20,30 @@ public class FetchingLoaderScreen {
         waitHelper =new WaitHelper(driver);
     }
 
+    // Locators for the elements on the Fetching Loading Screen
+    private static final By fetchingLogo = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivLoader']");
+    private static final By loaderBar = By.xpath("//android.widget.ProgressBar[@resource-id='com.steris.vnc:id/progressBarLinear']");
+    private static final By fetchingText = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvFetchingText']");
+    private static final By messageText = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvSubtitleText']");
+
+
     public boolean isFetchingLogoVisible(){
-        return driver.findElement(AppiumBy.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivLoader']")).isDisplayed();
+        WebElement logo = waitHelper.waitForElementToBeVisible(fetchingLogo, 30); // Wait for the logo to be visible
+        return logo != null && logo.isDisplayed();
     }
 
     public boolean isLoaderBarVisible(){
-        return driver.findElement(AppiumBy.xpath("//android.widget.ProgressBar[@resource-id='com.steris.vnc:id/progressBarLinear']")).isDisplayed();
+        WebElement bar = waitHelper.waitForElementToBeVisible(loaderBar,30);
+        return bar != null && bar.isDisplayed();
     }
 
-    public boolean isFetchingtextVisible(){
-        return driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvFetchingText']")).isDisplayed();
+    public boolean isFetchingTextVisible(){
+        WebElement Text = waitHelper.waitForElementToBeVisible(fetchingText,30);
+        return Text != null && Text.isDisplayed();
     }
 
     public boolean isMessageAvailable(){
-        return driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvSubtitleText']")).isDisplayed();
+        WebElement msg = waitHelper.waitForElementToBeVisible(messageText,30);
+        return msg != null && msg.isDisplayed();
     }
 }

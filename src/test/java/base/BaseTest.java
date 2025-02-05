@@ -2,7 +2,10 @@ package base;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import config.ConfigReader;
+import utils.ExtentReportManager;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -10,8 +13,10 @@ public class BaseTest {
 
     public static AndroidDriver driver;
 
-    public static void setup() throws MalformedURLException {
+    @BeforeSuite
+    public void setup() throws MalformedURLException {
         DesiredCapabilities cap = new DesiredCapabilities();
+        ExtentReportManager.createInstance("TestReport");
 
         cap.setCapability("deviceName", ConfigReader.getProperty("deviceName"));
         cap.setCapability("udid", ConfigReader.getProperty("udid"));
@@ -34,11 +39,13 @@ public class BaseTest {
         }
     }
 
+    @AfterSuite
     public void tearDown() {
         if (driver != null) {
             driver.quit();
             System.out.println("App has been closed");
         }
-
+        // Ensure that the Extent Report is flushed only once after all tests
+        ExtentReportManager.flushReport();
     }
 }

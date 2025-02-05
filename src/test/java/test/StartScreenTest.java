@@ -18,24 +18,22 @@ public class StartScreenTest extends BaseTest {
     WaitHelper waitHelper;
 
     @BeforeClass
-    public void setUpTest() throws Exception {
-        // Initialize Extent Report
-        ExtentReportManager.createInstance("LoginTestReport");
-        test = ExtentReportManager.createTest("Login Test");
+    public void setUpTest() {
+        log.info("Setting up Start Screen Test...");
 
-        // Setup WebDriver and necessary pages
-        setup();
+        // Use the same Extent Report instance
+        test = ExtentReportManager.createTest("Start Screen Test");
+
+        // Initialize page objects (driver is already initialized in BaseTest)
         startScreen = new StartScreen(driver);
-
-        // Initialize WaitHelper
         waitHelper = new WaitHelper(driver);
 
-        log.info("Setup complete, starting the Regression Test Suite.");
+        log.info("Setup complete, starting the Start Screen test.");
     }
 
     @Test
     public void testLogin() {
-        log.info("Starting the App process...");
+        log.info("Starting Start Screen Test...");
 
         boolean isLogoVisible = startScreen.isLogoVisible();
         log.info("Checking if STERIS Logo is visible: " + isLogoVisible);
@@ -59,10 +57,7 @@ public class StartScreenTest extends BaseTest {
 
     @AfterClass
     public void tearDownTest() {
-        log.info("Test completed, tearing down.");
+        log.info("Start screen test completed.");
 
-        // Capture report and cleanup
-        ExtentReportManager.flushReport();
-        tearDown();
     }
 }
