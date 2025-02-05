@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="Setting up the base of my VHP view demo . In this  only I have created the frameworks and the basic code for starting the vhp viewer demo">
-      <changelist_data name="Kaustubh Singh" email="kaustubhsingh37@gmail.com" />
+    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="made more dynamic wait helper.java class and added fetching laoder screen some implementations">
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/FetchingLoaderScreenTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/FetchingLoaderScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/FetchingLoaderScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/FetchingLoaderScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/StartScreenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/StartScreenTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +31,26 @@
         <option value="Kaustubh Singh &lt;kaustubhsingh37@gmail.com&gt;" />
       </list>
     </option>
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SKaustubh&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SKaustubh/Appium.git&quot;,
+    &quot;accountId&quot;: &quot;feffee22-73cc-447d-a935-3ebdabf9a62a&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -50,6 +74,7 @@
     "TestNG.LoginTest.testLogin.executor": "Debug",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/bhara/IdeaProjects/Appium/src/test/java",
     "last_opened_file_path": "C:/Users/bhara/IdeaProjects/Appium",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
@@ -61,8 +86,8 @@
     </key>
   </component>
   <component name="RunManager" selected="TestNG.C:/Users/bhara/IdeaProjects/Appium/testng.xml">
-    <configuration name="LoginTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test.LoginTest" />
+    <configuration name="StartScreenTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.StartScreenTest" />
       <module name="Appium" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -81,7 +106,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="TestNG.C:/Users/bhara/IdeaProjects/Appium/testng.xml" />
-        <item itemvalue="Application.LoginTest" />
+        <item itemvalue="Application.StartScreenTest" />
       </list>
     </recent_temporary>
   </component>
@@ -110,7 +135,47 @@
       <option name="project" value="LOCAL" />
       <updated>1738670118107</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="adding log on tearing down app">
+      <option name="closed" value="true" />
+      <created>1738675809364</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1738675809364</updated>
+    </task>
+    <task id="LOCAL-00004" summary="changing the name of test suite">
+      <option name="closed" value="true" />
+      <created>1738737464801</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1738737464801</updated>
+    </task>
+    <task id="LOCAL-00005" summary="adding multiple logs and test assertion .Also adding test cases for start screen">
+      <option name="closed" value="true" />
+      <created>1738750257162</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1738750257162</updated>
+    </task>
+    <task id="LOCAL-00006" summary="unversioned files push">
+      <option name="closed" value="true" />
+      <created>1738750330439</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1738750330439</updated>
+    </task>
+    <task id="LOCAL-00007" summary="made more dynamic wait helper.java class and added fetching laoder screen some implementations">
+      <option name="closed" value="true" />
+      <created>1738755460661</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1738755460661</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,24 +191,24 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Setting up the base of my VHP view demo . In this  only I have created the frameworks and the basic code for starting the vhp viewer demo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Setting up the base of my VHP view demo . In this  only I have created the frameworks and the basic code for starting the vhp viewer demo" />
+    <MESSAGE value="adding log on tearing down app" />
+    <MESSAGE value="changing the name of test suite" />
+    <MESSAGE value="adding multiple logs and test assertion .Also adding test cases for start screen" />
+    <MESSAGE value="unversioned files push" />
+    <MESSAGE value="made more dynamic wait helper.java class and added fetching laoder screen some implementations" />
+    <option name="LAST_COMMIT_MESSAGE" value="made more dynamic wait helper.java class and added fetching laoder screen some implementations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/test/LoginTest.java</url>
+          <url>file://$PROJECT_DIR$/src/test/java/test/StartScreenTest.java</url>
           <line>25</line>
-          <properties class="test.LoginTest">
+          <properties class="test.StartScreenTest">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pages/LoginPage.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
