@@ -2,7 +2,7 @@
 <suite name="AppiumTestSuite" parallel="false">
     <test name="LoginTests">
         <classes>
-            <class name="test.RegressionTestSuite"/>
+            <class name="test.StartScreenTest"/>
         </classes>
     </test>
 </suite>
