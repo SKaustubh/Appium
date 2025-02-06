@@ -1,6 +1,6 @@
 package test;
 
-import base.BaseTest;  // ✅ Import BaseTest (from src/main/java)
+import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -22,7 +22,7 @@ public class FetchingLoaderScreenTest extends BaseTest {
     public void setUpTest() throws Exception {
         log.info("Setting up Fetching Loader Screen test...");
 
-        // Use the same Extent Report instance to ensure a single report for all test cases
+
         test = ExtentReportManager.createTest("Fetching Loader Screen Test");
 
         // Initialize page objects

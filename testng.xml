@@ -4,6 +4,7 @@
         <classes>
             <class name="test.StartScreenTest"/>
             <class name="test.FetchingLoaderScreenTest"/>
+            <class name="test.AllDeviceListPageTest"/>
 
         </classes>
     </test>

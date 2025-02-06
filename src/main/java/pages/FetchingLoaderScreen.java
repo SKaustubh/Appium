@@ -14,13 +14,13 @@ public class FetchingLoaderScreen{
     private static final Logger log = LoggerUtility.getLogger(FetchingLoaderScreen.class);
     WaitHelper waitHelper;
 
-    //constructor initialization
+    //constructor
     public FetchingLoaderScreen(AndroidDriver driver){
         this.driver=driver;
         waitHelper =new WaitHelper(driver);
     }
 
-    // Locators for the elements on the Fetching Loading Screen
+
     private static final By fetchingLogo = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivLoader']");
     private static final By loaderBar = By.xpath("//android.widget.ProgressBar[@resource-id='com.steris.vnc:id/progressBarLinear']");
     private static final By fetchingText = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvFetchingText']");
