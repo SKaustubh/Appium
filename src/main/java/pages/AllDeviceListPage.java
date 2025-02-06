@@ -100,5 +100,16 @@ public class AllDeviceListPage {
                 log.error("Error retrieving device details: " + e.getMessage());
             }
         }
+    }
+
+    public void clickConnectButton() {
+        List<WebElement> connectButtons = driver.findElements(allConnectButtons);
+
+        if (!connectButtons.isEmpty()) {
+            log.info("Clicking on Connect button to enter Full-Screen Mode...");
+            connectButtons.get(0).click();
+        } else {
+            log.error("No Connect button found!");
         }
+    }
 }

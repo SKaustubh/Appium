@@ -7,19 +7,23 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class ExtentReportManager {
     private static ExtentReports extent;
-    private static ExtentTest test;
+    private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();  // ThreadLocal for individual test instances
 
     // Create ExtentReports instance
     public static ExtentReports createInstance(String reportName) {
-        // Use ExtentSparkReporter instead of ExtentHtmlReporter
-        ExtentSparkReporter sparkReporter = new ExtentSparkReporter("reports/" + reportName + ".html");
+        String reportPath = "reports/" + reportName + ".html";
 
-        // Configure report settings
+        // Ensure "reports" directory exists
+        java.io.File reportsDir = new java.io.File("reports");
+        if (!reportsDir.exists()) {
+            reportsDir.mkdirs();
+        }
+
+        ExtentSparkReporter sparkReporter = new ExtentSparkReporter(reportPath);
         sparkReporter.config().setDocumentTitle("Automation Test Report");
         sparkReporter.config().setReportName("Test Execution Report");
         sparkReporter.config().setTheme(Theme.STANDARD);
 
-        // Create ExtentReports instance
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
         return extent;
@@ -27,8 +31,14 @@ public class ExtentReportManager {
 
     // Create a new test in the report
     public static ExtentTest createTest(String testName) {
-        test = extent.createTest(testName);
-        return test;
+        ExtentTest newTest = extent.createTest(testName);
+        test.set(newTest); // Store the test for the current thread
+        return newTest;
+    }
+
+    // Retrieve the current test instance for the current thread
+    public static ExtentTest getTest() {
+        return test.get();  // Retrieve the test instance associated with the current thread
     }
 
     // Save the report
