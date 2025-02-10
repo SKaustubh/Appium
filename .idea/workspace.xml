@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="Implemented testing of the UI feature of All device list page">
+    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/AllDeviceListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/AllDeviceListPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pages/FullScreenPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/FullScreenPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/StartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/StartScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utils/ExtentReportManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/ExtentReportManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/AllDeviceListPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/AllDeviceListPageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/StartScreenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/StartScreenTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,20 +66,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AppTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginTest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;TestNG.C:/Users/bhara/IdeaProjects/Appium/testng.xml.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.testLogin.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/bhara/IdeaProjects/Appium/src/test/java&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/bhara/IdeaProjects/Appium&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AppTest.executor": "Run",
+    "Application.LoginTest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "TestNG.C:/Users/bhara/IdeaProjects/Appium/testng.xml.executor": "Run",
+    "TestNG.LoginTest.testLogin.executor": "Debug",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/bhara/IdeaProjects/Appium/src/test/java",
+    "last_opened_file_path": "C:/Users/bhara/IdeaProjects/Connection",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\bhara\IdeaProjects\Appium" />
@@ -199,7 +200,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738835652741</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="implemented some changes for cash hadnling in the base test and also in event reposrter for logging these issues">
+      <option name="closed" value="true" />
+      <created>1738839822852</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1738839822852</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -223,7 +232,8 @@
     <MESSAGE value="done automation for the FetchingLoaderScreen" />
     <MESSAGE value="pushing  workspace.xml" />
     <MESSAGE value="Implemented testing of the UI feature of All device list page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented testing of the UI feature of All device list page" />
+    <MESSAGE value="implemented some changes for cash hadnling in the base test and also in event reposrter for logging these issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented some changes for cash hadnling in the base test and also in event reposrter for logging these issues" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -236,6 +246,12 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/test/java/base/BaseTest.java</url>
+          <line>19</line>
+          <properties field="driver" class="base.BaseTest" />
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -21,8 +21,6 @@ public class AllDeviceListPageTest extends BaseTest {
     @BeforeClass
     public void setUpTest() throws Exception {
         log.info("Setting up All Device List Page test...");
-
-
         test = ExtentReportManager.createTest("All Device List Page Test");
 
         // Initialize page objects

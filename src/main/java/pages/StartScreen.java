@@ -19,17 +19,22 @@ public class StartScreen {
     }
 
     private static final By startButtonXPath = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/btnStart']");
+    private static final By logo = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivLogo']");
+    private static final By sterisText = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivLogo']");
 
-
-    public boolean isLogoVisible(){
-        return driver.findElement(AppiumBy.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivLogo']")).isDisplayed();
+    // Explicit wait integrated method for logo visibility
+    public boolean isLogoVisible() {
+        WebElement logoElement = waitHelper.waitForElementToBeVisible(logo, 30); // Wait for the logo to be visible
+        return logoElement != null && logoElement.isDisplayed();
     }
 
-    public boolean isSterisTextVisible(){
-        return driver.findElement(AppiumBy.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivLogo']")).isDisplayed();
+    // Explicit wait integrated method for Steris text visibility
+    public boolean isSterisTextVisible() {
+        WebElement textElement = waitHelper.waitForElementToBeVisible(sterisText, 30); // Wait for the Steris text to be visible
+        return textElement != null && textElement.isDisplayed();
     }
 
-    public WebElement getStartButton() {
+        public WebElement getStartButton() {
         return driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/btnStart']"));
     }
 

@@ -20,7 +20,7 @@ public class BaseTest {
     public static AndroidDriver driver;
 
     @BeforeSuite
-    public void setup() throws MalformedURLException {
+    public void setup() throws MalformedURLException{
         DesiredCapabilities cap = new DesiredCapabilities();
         ExtentReportManager.createInstance("TestReport");
 
@@ -34,48 +34,59 @@ public class BaseTest {
         cap.setCapability("appPackage", ConfigReader.getProperty("appPackage"));
         cap.setCapability("appActivity", ConfigReader.getProperty("appActivity"));
 
+        // Extra capabilities to avoid app closing issue
+        cap.setCapability("autoGrantPermissions", true);
+        cap.setCapability("appWaitActivity", "com.steris.vnc.ui.home.StartActivity,com.steris.vnc.ui.vnc.VncActivity"); // Wait for next activity
+
+
         System.out.println("Capabilities set...");
 
         try {
             URL url = new URL(ConfigReader.getProperty("serverURL"));
             driver = new AndroidDriver(url, cap);
+
+
+            // Explicit wait for StartActivity to load after Splash
+
+
+
             System.out.println("App started successfully!");
         } catch (Exception e) {
             System.out.println("Error while starting Appium: " + e.getMessage());
         }
     }
 
-    @AfterMethod
-    public void checkForAppCrash(ITestResult result) {
-        if (result.getStatus() == ITestResult.FAILURE) {
-            System.out.println("❌ Test Failed: " + result.getName());
-            logFailure(result);
-        }
-    }
-
-    private void logFailure(ITestResult result) {
-        String testName = result.getName();
-        Throwable error = result.getThrowable();
-
-        System.out.println("❌ Error Details: " + error.getMessage());
-
-        // Capture Screenshot on Failure
-        captureScreenshot(testName);
-
-        // Log failure in Extent Reports
-        ExtentReportManager.getTest().log(Status.FAIL, "Test Failed: " + error.getMessage());
-    }
-
-    public void captureScreenshot(String testName) {
-        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String screenshotPath = "screenshots/" + testName + ".png";
-        try {
-            FileUtils.copyFile(screenshot, new File(screenshotPath));
-            System.out.println("📸 Screenshot captured: " + screenshotPath);
-        } catch (IOException e) {
-            System.out.println("❌ Error saving screenshot: " + e.getMessage());
-        }
-    }
+//    @AfterMethod
+//    public void checkForAppCrash(ITestResult result) {
+//        if (result.getStatus() == ITestResult.FAILURE) {
+//            System.out.println("❌ Test Failed: " + result.getName());
+//            logFailure(result);
+//        }
+//    }
+//
+//    private void logFailure(ITestResult result) {
+//        String testName = result.getName();
+//        Throwable error = result.getThrowable();
+//
+//        System.out.println("❌ Error Details: " + error.getMessage());
+//
+//        // Capture Screenshot on Failure
+//        captureScreenshot(testName);
+//
+//        // Log failure in Extent Reports
+//        ExtentReportManager.getTest().log(Status.FAIL, "Test Failed: " + error.getMessage());
+//    }
+//
+//    public void captureScreenshot(String testName) {
+//        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//        String screenshotPath = "screenshots/" + testName + ".png";
+//        try {
+//            FileUtils.copyFile(screenshot, new File(screenshotPath));
+//            System.out.println("📸 Screenshot captured: " + screenshotPath);
+//        } catch (IOException e) {
+//            System.out.println("❌ Error saving screenshot: " + e.getMessage());
+//        }
+//    }
 
 
     @AfterSuite
