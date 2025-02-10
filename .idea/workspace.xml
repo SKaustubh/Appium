@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="">
+    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="at last there are running and I have written some code for All devices list and also for the full screen moide some scenarios I have to handle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pages/FullScreenPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/FullScreenPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/StartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/StartScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/ExtentReportManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/ExtentReportManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/AllDeviceListPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/AllDeviceListPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/StartScreenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/StartScreenTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -208,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738839822852</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="at last there are running and I have written some code for All devices list and also for the full screen moide some scenarios I have to handle">
+      <option name="closed" value="true" />
+      <created>1739182189732</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1739182189732</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -233,7 +239,8 @@
     <MESSAGE value="pushing  workspace.xml" />
     <MESSAGE value="Implemented testing of the UI feature of All device list page" />
     <MESSAGE value="implemented some changes for cash hadnling in the base test and also in event reposrter for logging these issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented some changes for cash hadnling in the base test and also in event reposrter for logging these issues" />
+    <MESSAGE value="at last there are running and I have written some code for All devices list and also for the full screen moide some scenarios I have to handle" />
+    <option name="LAST_COMMIT_MESSAGE" value="at last there are running and I have written some code for All devices list and also for the full screen moide some scenarios I have to handle" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

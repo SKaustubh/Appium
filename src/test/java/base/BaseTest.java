@@ -56,37 +56,37 @@ public class BaseTest {
         }
     }
 
-//    @AfterMethod
-//    public void checkForAppCrash(ITestResult result) {
-//        if (result.getStatus() == ITestResult.FAILURE) {
-//            System.out.println("❌ Test Failed: " + result.getName());
-//            logFailure(result);
-//        }
-//    }
-//
-//    private void logFailure(ITestResult result) {
-//        String testName = result.getName();
-//        Throwable error = result.getThrowable();
-//
-//        System.out.println("❌ Error Details: " + error.getMessage());
-//
-//        // Capture Screenshot on Failure
-//        captureScreenshot(testName);
-//
-//        // Log failure in Extent Reports
-//        ExtentReportManager.getTest().log(Status.FAIL, "Test Failed: " + error.getMessage());
-//    }
-//
-//    public void captureScreenshot(String testName) {
-//        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-//        String screenshotPath = "screenshots/" + testName + ".png";
-//        try {
-//            FileUtils.copyFile(screenshot, new File(screenshotPath));
-//            System.out.println("📸 Screenshot captured: " + screenshotPath);
-//        } catch (IOException e) {
-//            System.out.println("❌ Error saving screenshot: " + e.getMessage());
-//        }
-//    }
+    @AfterMethod
+    public void checkForAppCrash(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            System.out.println("❌ Test Failed: " + result.getName());
+            logFailure(result);
+        }
+    }
+
+    private void logFailure(ITestResult result) {
+        String testName = result.getName();
+        Throwable error = result.getThrowable();
+
+        System.out.println("❌ Error Details: " + error.getMessage());
+
+        // Capture Screenshot on Failure
+        captureScreenshot(testName);
+
+        // Log failure in Extent Reports
+        ExtentReportManager.getTest().log(Status.FAIL, "Test Failed: " + error.getMessage());
+    }
+
+    public void captureScreenshot(String testName) {
+        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String screenshotPath = "screenshots/" + testName + ".png";
+        try {
+            FileUtils.copyFile(screenshot, new File(screenshotPath));
+            System.out.println("📸 Screenshot captured: " + screenshotPath);
+        } catch (IOException e) {
+            System.out.println("❌ Error saving screenshot: " + e.getMessage());
+        }
+    }
 
 
     @AfterSuite

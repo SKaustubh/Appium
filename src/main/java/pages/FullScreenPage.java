@@ -27,6 +27,80 @@ public class FullScreenPage {
     private static final By mirroredFrame = By.xpath("//android.view.View[@resource-id='com.steris.vnc:id/frame_view']");
     private static final By disconnectButton = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivDisconnect']");
 
+    // Locators for Password Prompt elements
+    private static final By passwordField = By.xpath("//android.widget.EditText[@resource-id='com.steris.vnc:id/password']");
+    private static final By togglePasswordVisibilityButton = By.xpath("//android.widget.ImageView[@content-desc='Toggle Password Visibility']");
+    private static final By invalidPasswordMessage = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/invalidPass']");
+    private static final By passwordPromptTitle = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvTitle']");
+    private static final By cancelButton = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/btnCancel']");
+    private static final By connectButton = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/btnConnect']");
+
+    // Method to click the "Connect" button on the start page
+    public void clickConnectButton() {
+        WebElement connectBtn = waitHelper.waitForElementToBeVisible(connectButton, 10);
+        if (connectBtn != null && connectBtn.isDisplayed()) {
+            log.info("Clicking on Connect Button on Start Page...");
+            connectBtn.click();
+        } else {
+            log.error("Connect Button on Start Page is not found!");
+        }
+    }
+
+
+    // Method to check if Password Prompt is displayed
+    public boolean isPasswordPromptDisplayed() {
+        WebElement promptTitle = waitHelper.waitForElementToBeVisible(passwordPromptTitle, 10);
+        return promptTitle != null && promptTitle.isDisplayed();
+    }
+
+    // Method to enter password
+    public void enterPassword(String password) {
+        WebElement passwordInput = waitHelper.waitForElementToBeVisible(passwordField, 10);
+        if (passwordInput != null && passwordInput.isDisplayed()) {
+            log.info("Entering password...");
+            passwordInput.sendKeys(password);
+        } else {
+            log.error("Password field is not found!");
+        }
+    }
+
+    // Method to click Connect button on Password Prompt
+    public void clickPasswordPromptConnectButton() {
+        WebElement connectBtn = waitHelper.waitForElementToBeVisible(connectButton, 10);
+        if (connectBtn != null && connectBtn.isDisplayed()) {
+            log.info("Clicking on Connect Button in Password Prompt...");
+            connectBtn.click();
+        } else {
+            log.error("Connect Button in Password Prompt is not found!");
+        }
+    }
+
+    // Method to get invalid password message
+    public String getInvalidPasswordMessage() {
+        WebElement messageElement = waitHelper.waitForElementToBeVisible(invalidPasswordMessage, 10);
+        if (messageElement != null && messageElement.isDisplayed()) {
+            String message = messageElement.getText();
+            log.info("Invalid Password Message: " + message);
+            return message;
+        } else {
+            log.warn("Invalid Password Message is not displayed.");
+            return null;
+        }
+    }
+
+    // Method to get device name and IP from Password Prompt title
+    public String getDeviceNameAndIPFromPrompt() {
+        WebElement titleElement = waitHelper.waitForElementToBeVisible(passwordPromptTitle, 10);
+        if (titleElement != null && titleElement.isDisplayed()) {
+            String titleText = titleElement.getText();
+            log.info("Password Prompt Title: " + titleText);
+            return titleText;
+        } else {
+            log.warn("Password Prompt Title is not displayed.");
+            return null;
+        }
+    }
+
     // Check if Full-Screen Page is loaded
     public boolean isFullScreenLoaded() {
         WebElement frameView = waitHelper.waitForElementToBeVisible(mirroredFrame, 30);
