@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="changed the message for Alerts in teh password pop up form">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenshots/testFullScreenPageFunctionality.png" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/testFullScreenPageFunctionality.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/AllDeviceListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/AllDeviceListPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/FullScreenPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/FullScreenPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/AllDeviceListPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/AllDeviceListPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/FullScreenPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/FullScreenPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="running each test cases for each devices making it dynamic" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -231,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739256385002</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="running each test cases for each devices making it dynamic">
+      <option name="closed" value="true" />
+      <created>1739259648834</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1739259648834</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -259,7 +259,8 @@
     <MESSAGE value="at last there are running and I have written some code for All devices list and also for the full screen moide some scenarios I have to handle" />
     <MESSAGE value="I have implemented the navigation from alldevice lsit to full screen view but for only one device" />
     <MESSAGE value="changed the message for Alerts in teh password pop up form" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed the message for Alerts in teh password pop up form" />
+    <MESSAGE value="running each test cases for each devices making it dynamic" />
+    <option name="LAST_COMMIT_MESSAGE" value="running each test cases for each devices making it dynamic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
