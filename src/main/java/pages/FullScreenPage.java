@@ -26,6 +26,7 @@ public class FullScreenPage {
     private static final By keyboardIcon = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivKeyboard']");
     private static final By mirroredFrame = By.xpath("//android.view.View[@resource-id='com.steris.vnc:id/frame_view']");
     private static final By disconnectButton = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivDisconnect']");
+    private static final By refreshBTN =By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivRefresh']");
 
     // Locators for Password Prompt elements
     private static final By passwordField = By.xpath("//android.widget.EditText[@resource-id='com.steris.vnc:id/password']");
@@ -80,10 +81,10 @@ public class FullScreenPage {
         WebElement messageElement = waitHelper.waitForElementToBeVisible(invalidPasswordMessage, 10);
         if (messageElement != null && messageElement.isDisplayed()) {
             String message = messageElement.getText();
-            log.info("Invalid Password Message: " + message);
+            log.info("Reason for not connection : " + message);
             return message;
         } else {
-            log.warn("Invalid Password Message is not displayed.");
+            log.warn("Alert Message is not displayed.");
             return null;
         }
     }

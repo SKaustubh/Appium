@@ -71,8 +71,8 @@ public class FullScreenPageTest extends BaseTest {
             // Check for invalid password message
             String invalidPasswordMsg = fullScreenPage.getInvalidPasswordMessage();
             if (invalidPasswordMsg != null) {
-                log.error("Invalid Password Message: " + invalidPasswordMsg);
-                Assert.fail("Failed to connect due to invalid password.");
+                log.error("Alert message on the Password field: " + invalidPasswordMsg);
+                Assert.fail("Failed to connect due to : " + invalidPasswordMsg);
             }
         } else {
             log.info("No password prompt displayed. Proceeding to full-screen view.");
