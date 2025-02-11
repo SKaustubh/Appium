@@ -50,57 +50,80 @@ public class FullScreenPage {
 
     // Method to check if Password Prompt is displayed
     public boolean isPasswordPromptDisplayed() {
-        WebElement promptTitle = waitHelper.waitForElementToBeVisible(passwordPromptTitle, 10);
-        return promptTitle != null && promptTitle.isDisplayed();
+        try {
+            WebElement promptTitle = waitHelper.waitForElementToBeVisible(passwordPromptTitle, 10);
+            return promptTitle != null && promptTitle.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     // Method to enter password
     public void enterPassword(String password) {
-        WebElement passwordInput = waitHelper.waitForElementToBeVisible(passwordField, 10);
-        if (passwordInput != null && passwordInput.isDisplayed()) {
-            log.info("Entering password...");
-            passwordInput.sendKeys(password);
+        if (isPasswordPromptDisplayed()) {
+            WebElement passwordInput = waitHelper.waitForElementToBeVisible(passwordField, 10);
+            if (passwordInput != null && passwordInput.isDisplayed()) {
+                log.info("Entering password...");
+                passwordInput.sendKeys(password);
+            } else {
+                log.error("Password field is not found!");
+            }
         } else {
-            log.error("Password field is not found!");
+            log.info("Password prompt is not displayed. Skipping password entry.");
         }
     }
 
     // Method to click Connect button on Password Prompt
     public void clickPasswordPromptConnectButton() {
-        WebElement connectBtn = waitHelper.waitForElementToBeVisible(connectButton, 10);
-        if (connectBtn != null && connectBtn.isDisplayed()) {
-            log.info("Clicking on Connect Button in Password Prompt...");
-            connectBtn.click();
+        if (isPasswordPromptDisplayed()) {
+            WebElement connectBtn = waitHelper.waitForElementToBeVisible(connectButton, 10);
+            if (connectBtn != null && connectBtn.isDisplayed()) {
+                log.info("Clicking on Connect Button in Password Prompt...");
+                connectBtn.click();
+            } else {
+                log.error("Connect Button in Password Prompt is not found!");
+            }
         } else {
-            log.error("Connect Button in Password Prompt is not found!");
+            log.info("Password prompt is not displayed. Skipping Connect button click.");
         }
     }
 
     // Method to get invalid password message
     public String getInvalidPasswordMessage() {
-        WebElement messageElement = waitHelper.waitForElementToBeVisible(invalidPasswordMessage, 10);
-        if (messageElement != null && messageElement.isDisplayed()) {
-            String message = messageElement.getText();
-            log.info("Reason for not connection : " + message);
-            return message;
+        if (isPasswordPromptDisplayed()) {
+            WebElement messageElement = waitHelper.waitForElementToBeVisible(invalidPasswordMessage, 10);
+            if (messageElement != null && messageElement.isDisplayed()) {
+                String message = messageElement.getText();
+                log.info("Reason for not connection: " + message);
+                return message;
+            } else {
+                log.warn("Alert Message is not displayed.");
+                return null;
+            }
         } else {
-            log.warn("Alert Message is not displayed.");
+            log.info("Password prompt is not displayed. Skipping invalid password message retrieval.");
             return null;
         }
     }
 
     // Method to get device name and IP from Password Prompt title
     public String getDeviceNameAndIPFromPrompt() {
-        WebElement titleElement = waitHelper.waitForElementToBeVisible(passwordPromptTitle, 10);
-        if (titleElement != null && titleElement.isDisplayed()) {
-            String titleText = titleElement.getText();
-            log.info("Password Prompt Title: " + titleText);
-            return titleText;
+        if (isPasswordPromptDisplayed()) {
+            WebElement titleElement = waitHelper.waitForElementToBeVisible(passwordPromptTitle, 10);
+            if (titleElement != null && titleElement.isDisplayed()) {
+                String titleText = titleElement.getText();
+                log.info("Password Prompt Title: " + titleText);
+                return titleText;
+            } else {
+                log.warn("Password Prompt Title is not displayed.");
+                return null;
+            }
         } else {
-            log.warn("Password Prompt Title is not displayed.");
+            log.info("Password prompt is not displayed. Skipping device name and IP retrieval.");
             return null;
         }
     }
+
 
     // Check if Full-Screen Page is loaded
     public boolean isFullScreenLoaded() {

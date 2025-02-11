@@ -1,9 +1,11 @@
 package test;
 
 import base.BaseTest;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.AllDeviceListPage;
 import pages.FullScreenPage;
@@ -43,24 +45,27 @@ public class FullScreenPageTest extends BaseTest {
         log.info("Setup complete, starting the Full Screen Page test.");
     }
 
-    @Test
-    public void testFullScreenPageFunctionality() {
-        log.info("Starting Full Screen Page Functionality Test...");
+    @DataProvider(name = "deviceDataProvider")
+    public Object[][] deviceDataProvider() {
+        List<AllDeviceListPage.Device> devices = allDeviceListPage.getAllDevices();
+        Object[][] deviceData = new Object[devices.size()][1];
+        for (int i = 0; i < devices.size(); i++) {
+            deviceData[i][0] = devices.get(i);
+        }
+        return deviceData;
+    }
 
+    @Test(dataProvider = "deviceDataProvider")
+    public void testFullScreenPageFunctionality(AllDeviceListPage.Device device) {
+        log.info("Starting Full Screen Page Functionality Test for Device: " + device.getName() + " | IP: " + device.getIpAddress());
 
-        // Retrieve all devices from All Device List page
-//        List<WebElement> devices = allDeviceListPage.getDevicesList();
-
-        // Attempt to connect to the device
-        fullScreenPage.clickConnectButton();
+        // Click the Connect button for the specific device
+        WebElement connectButton = device.getContainer().findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/btnConnect']"));
+        connectButton.click();
 
         // Check if Password Prompt is displayed
         if (fullScreenPage.isPasswordPromptDisplayed()) {
-            log.info("Password prompt is displayed.");
-
-            // Retrieve and log device name and IP from the prompt
-            String deviceInfo = fullScreenPage.getDeviceNameAndIPFromPrompt();
-            log.info("Device Info from Prompt: " + deviceInfo);
+            log.info("Password prompt is displayed for device: " + device.getName());
 
             // Enter the password
             fullScreenPage.enterPassword(password);
@@ -72,17 +77,17 @@ public class FullScreenPageTest extends BaseTest {
             String invalidPasswordMsg = fullScreenPage.getInvalidPasswordMessage();
             if (invalidPasswordMsg != null) {
                 log.error("Alert message on the Password field: " + invalidPasswordMsg);
-                Assert.fail("Failed to connect due to : " + invalidPasswordMsg);
+                Assert.fail("Failed to connect to device: " + device.getName() + " due to: " + invalidPasswordMsg);
             }
         } else {
-            log.info("No password prompt displayed. Proceeding to full-screen view.");
+            log.info("No password prompt displayed for device: " + device.getName() + ". Proceeding to full-screen view.");
         }
 
         // Verify Full-Screen Page is loaded
         boolean isFullScreenLoaded = fullScreenPage.isFullScreenLoaded();
-        log.info("Full-Screen Page loaded: " + isFullScreenLoaded);
-        Assert.assertTrue(isFullScreenLoaded, "Full-Screen Page did not load.");
-        test.pass("Full-Screen Page loaded successfully.");
+        log.info("Full-Screen Page loaded for device: " + device.getName() + ": " + isFullScreenLoaded);
+        Assert.assertTrue(isFullScreenLoaded, "Full-Screen Page did not load for device: " + device.getName());
+        test.pass("Full-Screen Page loaded successfully for device: " + device.getName());
 
         // Verify Device Name is visible
         boolean isDeviceNameVisible = fullScreenPage.isDeviceNameVisible();

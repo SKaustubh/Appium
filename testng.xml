@@ -6,7 +6,6 @@
             <class name="test.FetchingLoaderScreenTest"/>
             <class name="test.AllDeviceListPageTest"/>
             <class name="test.FullScreenPageTest"/>
-
         </classes>
     </test>
 </suite>

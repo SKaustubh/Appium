@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import utils.LoggerUtility;
 import org.apache.logging.log4j.Logger;
 import utils.WaitHelper;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class AllDeviceListPage {
@@ -72,35 +74,59 @@ public class AllDeviceListPage {
         return element != null && element.isDisplayed();
     }
 
-    public void printAllDevices() {
-        // Find all device containers excluding "Add Device" container
-        List<WebElement> deviceContainers = driver.findElements(By.xpath("(//android.view.ViewGroup[@resource-id='com.steris.vnc:id/clBg'])[position() > 1]"));
+    // Locator for device containers
+    private static final By deviceContainersLocator = By.xpath("(//android.view.ViewGroup[@resource-id='com.steris.vnc:id/clBg'])[position() > 1]");
+
+    // Method to retrieve all devices with their names and IP addresses
+    public List<Device> getAllDevices() {
+        List<Device> devices = new ArrayList<>();
+        List<WebElement> deviceContainers = driver.findElements(deviceContainersLocator);
 
         if (deviceContainers.isEmpty()) {
             log.info("No devices found in the list.");
-            return;
+            return devices;
         }
 
         log.info("Total Devices Found: " + deviceContainers.size());
 
-        // Iterate over each container and print device details
         for (WebElement container : deviceContainers) {
             try {
-                // Extract device name (from the text)
-                WebElement deviceNameElement = container.findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/tvDevice']"));
-                String deviceName = deviceNameElement.getText().trim();
-
-                // Extract IP address (from the text)
-                WebElement ipAddressElement = container.findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/tvIpAddress']"));
-                String ipAddress = ipAddressElement.getText().trim();
-
-                // Log the device name and IP address
+                String deviceName = container.findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/tvDevice']")).getText().trim();
+                String ipAddress = container.findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/tvIpAddress']")).getText().trim();
+                devices.add(new Device(deviceName, ipAddress, container));
                 log.info("Device Name: " + deviceName + " | IP Address: " + ipAddress);
             } catch (Exception e) {
                 log.error("Error retrieving device details: " + e.getMessage());
             }
         }
+        return devices;
     }
+
+    // Inner class to represent a Device
+    public static class Device {
+        private String name;
+        private String ipAddress;
+        private WebElement container;
+
+        public Device(String name, String ipAddress, WebElement container) {
+            this.name = name;
+            this.ipAddress = ipAddress;
+            this.container = container;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getIpAddress() {
+            return ipAddress;
+        }
+
+        public WebElement getContainer() {
+            return container;
+        }
+    }
+
 
     public void clickConnectButton() {
         List<WebElement> connectButtons = driver.findElements(allConnectButtons);

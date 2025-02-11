@@ -68,7 +68,7 @@ public class AllDeviceListPageTest extends BaseTest {
         log.info("Starting test to print all devices...");
 
         // Call method to print all devices
-        allDeviceListPage.printAllDevices();
+        allDeviceListPage.getAllDevices();
 
         log.info("All device details printed successfully.");
         test.pass("All device details printed successfully.");
