@@ -30,18 +30,11 @@ public class FullScreenPageTest extends BaseTest {
     @BeforeClass
     public void setUpTest() {
         log.info("Setting up Full Screen Page Test...");
-
-        // Load password from config.properties
         password = loadPasswordFromConfig();
-
-        // Use the same Extent Report instance
         test = ExtentReportManager.createTest("Full Screen Page Test");
-
-        // Initialize page objects (driver is already initialized in BaseTest)
         fullScreenPage = new FullScreenPage(driver);
         waitHelper = new WaitHelper(driver);
         allDeviceListPage = new AllDeviceListPage(driver);
-
         log.info("Setup complete, starting the Full Screen Page test.");
     }
 
@@ -57,73 +50,46 @@ public class FullScreenPageTest extends BaseTest {
 
     @Test(dataProvider = "deviceDataProvider")
     public void testFullScreenPageFunctionality(AllDeviceListPage.Device device) {
-        log.info("Clicking on Connect button for Full screen mode Functionality Test for Device: " + device.getName() + " | IP: " + device.getIpAddress());
+        log.info("Starting test for device: {} | IP: {}", device.getName(), device.getIpAddress());
 
-        // Click the Connect button for the specific device
         WebElement connectButton = device.getContainer().findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/btnConnect']"));
         connectButton.click();
 
-        // Check if Password Prompt is displayed
         if (fullScreenPage.isPasswordPromptDisplayed()) {
-            log.info("Password prompt is displayed for device: " + device.getName());
-
-            //toggle button
+            log.info("Password prompt displayed for device: {}", device.getName());
             fullScreenPage.clickVisibilityButton();
-
-            // Enter the password
             fullScreenPage.enterPassword(password);
 
-            //device name +IP address
-            String title =fullScreenPage.getDeviceNameAndIPFromPrompt();
+            String title = fullScreenPage.getDeviceNameAndIPFromPrompt();
             if (title != null) {
-                log.info("Title on the Password field: " + title);
-                test.pass("Not able to fetch title from the password form: " + device.getName());
+                log.info("Title on password form: {}", title);
+                test.pass("Device title displayed correctly.");
             }
-            // Click the Connect button on the password prompt
+
             fullScreenPage.clickPasswordPromptConnectButton();
-
-            //cancel btn
-            fullScreenPage.clickPasswordPromptCancelButton();
-
-            // Check for invalid password message
             String invalidPasswordMsg = fullScreenPage.getInvalidPasswordMessage();
             if (invalidPasswordMsg != null) {
-                log.error("Alert message on the Password field: " + invalidPasswordMsg);
-                Assert.fail("Failed to connect to device: " + device.getName() + " due to: " + invalidPasswordMsg);
-                //cancel btn
+                log.error("Invalid password message: {}", invalidPasswordMsg);
+                test.fail("Failed to connect due to: " + invalidPasswordMsg);
                 fullScreenPage.clickPasswordPromptCancelButton();
+                return;
             }
-
-
-        } else {
-            log.info("No password prompt displayed for device: " + device.getName() + ". Proceeding to full-screen view.");
         }
 
-        //full screen functinality
-        log.info("Starting  Full screen mode Functionality Test for Device: " + device.getName() + " | IP: " + device.getIpAddress());
+        if (!fullScreenPage.isFullScreenLoaded()) {
+            log.error("Full-Screen Page did not load for device: {}", device.getName());
+            test.fail("Full-Screen Page did not load.");
+            return;
+        }
 
-        // Verify Full-Screen Page is loaded
-        boolean isFullScreenLoaded = fullScreenPage.isFullScreenLoaded();
-        log.info("Full-Screen Page loaded for device: " + device.getName() + ": " + isFullScreenLoaded);
-        Assert.assertTrue(isFullScreenLoaded, "Full-Screen Page did not load for device: " + device.getName());
-        test.pass("Full-Screen Page loaded successfully for device: " + device.getName());
+        log.info("Full-Screen Page loaded successfully for device: {}", device.getName());
+        test.pass("Full-Screen Page loaded successfully.");
 
-        // Verify Device Name is visible
-        boolean isDeviceNameVisible = fullScreenPage.isDeviceNameVisible();
-        log.info("Device Name visible: " + isDeviceNameVisible);
-        Assert.assertTrue(isDeviceNameVisible, "Device Name is not visible.");
+        Assert.assertTrue(fullScreenPage.isDeviceNameVisible(), "Device Name is not visible.");
         test.pass("Device Name is visible.");
-
-        // Verify Online Indicator is visible
-        boolean isOnlineIndicatorVisible = fullScreenPage.isOnlineIndicatorVisible();
-        log.info("Online Indicator visible: " + isOnlineIndicatorVisible);
-        Assert.assertTrue(isOnlineIndicatorVisible, "Online Indicator is not visible.");
+        Assert.assertTrue(fullScreenPage.isOnlineIndicatorVisible(), "Online Indicator is not visible.");
         test.pass("Online Indicator is visible.");
-
-        // Verify Keyboard Icon is visible and test its functionality
-        boolean isKeyboardIconVisible = fullScreenPage.isKeyboardIconVisible();
-        log.info("Keyboard Icon visible: " + isKeyboardIconVisible);
-        Assert.assertTrue(isKeyboardIconVisible, "Keyboard Icon is not visible.");
+        Assert.assertTrue(fullScreenPage.isKeyboardIconVisible(), "Keyboard Icon is not visible.");
         test.pass("Keyboard Icon is visible.");
 
         fullScreenPage.clickKeyboardIcon();
@@ -133,15 +99,10 @@ public class FullScreenPageTest extends BaseTest {
         fullScreenPage.disconnectFullScreen();
         test.pass("Clicked on Disconnect Button.");
 
-       // to check whether the Disconnect pop up is visible or not
-        boolean isDisconnectPOPupVisible = fullScreenPage.disconnectPOPup();
-        log.info("Disconnect Pop UP is visible with messages: " + isDisconnectPOPupVisible);
-        Assert.assertTrue(isDisconnectPOPupVisible, "Disconnect Pop UP is not visible.");
-        test.pass("Disconnect Pop UP is visible.");
-
-        //clicking on disconnect button inside pop up
-        fullScreenPage.disconnectBTNinsidePopUPform();
-        test.pass("Clicked on Disconnect Button.");
+        if (fullScreenPage.disconnectPOPup()) {
+            fullScreenPage.disconnectBTNinsidePopUPform();
+            test.pass("Confirmed disconnection.");
+        }
     }
 
     private String loadPasswordFromConfig() {

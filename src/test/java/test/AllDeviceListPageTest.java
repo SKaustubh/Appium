@@ -11,6 +11,8 @@ import utils.LoggerUtility;
 import utils.WaitHelper;
 import com.aventstack.extentreports.ExtentTest;
 
+import java.util.List;
+
 public class AllDeviceListPageTest extends BaseTest {
 
     AllDeviceListPage allDeviceListPage;
@@ -68,7 +70,15 @@ public class AllDeviceListPageTest extends BaseTest {
         log.info("Starting test to print all devices...");
 
         // Call method to print all devices
-        allDeviceListPage.getAllDevices();
+        List<AllDeviceListPage.Device> devices = allDeviceListPage.getAllDevices();
+
+        // Print total number of devices
+        log.info("Total Devices Found: " + devices.size());
+
+        // Print details of each device
+        for (AllDeviceListPage.Device device : devices) {
+            log.info("Device Name: " + device.getName() + " | IP Address: " + device.getIpAddress());
+        }
 
         log.info("All device details printed successfully.");
         test.pass("All device details printed successfully.");

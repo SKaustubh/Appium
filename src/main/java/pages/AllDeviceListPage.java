@@ -1,6 +1,5 @@
 package pages;
 
-
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -32,7 +31,6 @@ public class AllDeviceListPage {
     private static final By allDeviceEditButtons = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivDevice']");
     private static final By allIpAddresses = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvIpAddress']");
     private static final By allConnectButtons = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/btnConnect']");
-
 
     public boolean isRefreshButtonVisible() {
         WebElement element = waitHelper.waitForElementToBeVisible(refreshButton, 30);
@@ -87,19 +85,37 @@ public class AllDeviceListPage {
             return devices;
         }
 
-        log.info("Total Devices Found: " + deviceContainers.size());
-
         for (WebElement container : deviceContainers) {
             try {
                 String deviceName = container.findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/tvDevice']")).getText().trim();
                 String ipAddress = container.findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/tvIpAddress']")).getText().trim();
                 devices.add(new Device(deviceName, ipAddress, container));
-                log.info("Device Name: " + deviceName + " | IP Address: " + ipAddress);
+
             } catch (Exception e) {
                 log.error("Error retrieving device details: " + e.getMessage());
             }
         }
         return devices;
+    }
+
+    // Method to click on the Connect button for a specific device by IP address
+    public void connectToDeviceByIp(String ipAddress) {
+        List<Device> devices = getAllDevices();
+
+        for (Device device : devices) {
+            if (device.getIpAddress().equalsIgnoreCase(ipAddress)) {
+                log.info("Found device with IP: " + ipAddress);
+                WebElement connectButton = device.getContainer().findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/btnConnect']"));
+                if (connectButton != null) {
+                    connectButton.click();
+                    log.info("Clicked on the Connect button for device with IP: " + ipAddress);
+                    return;
+                } else {
+                    log.error("No Connect button found for device with IP: " + ipAddress);
+                }
+            }
+        }
+        log.error("Device with IP: " + ipAddress + " not found in the list.");
     }
 
     // Inner class to represent a Device
@@ -124,18 +140,6 @@ public class AllDeviceListPage {
 
         public WebElement getContainer() {
             return container;
-        }
-    }
-
-
-    public void clickConnectButton() {
-        List<WebElement> connectButtons = driver.findElements(allConnectButtons);
-
-        if (!connectButtons.isEmpty()) {
-            log.info("Clicking on Connect button to enter Full-Screen Mode...");
-            connectButtons.get(0).click();
-        } else {
-            log.error("No Connect button found!");
         }
     }
 }

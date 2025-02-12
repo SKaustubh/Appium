@@ -114,9 +114,7 @@ public class FullScreenPage {
         if (isPasswordPromptDisplayed()) {
             WebElement messageElement = waitHelper.waitForElementToBeVisible(invalidPasswordMessage, 10);
             if (messageElement != null && messageElement.isDisplayed()) {
-                String message = messageElement.getText();
-                log.info("Reason for not connection: " + message);
-                return message;
+                return messageElement.getText();
             } else {
                 log.warn("Alert Message is not displayed.");
                 return null;
@@ -132,9 +130,7 @@ public class FullScreenPage {
         if (isPasswordPromptDisplayed()) {
             WebElement titleElement = waitHelper.waitForElementToBeVisible(passwordPromptTitle, 10);
             if (titleElement != null && titleElement.isDisplayed()) {
-                String titleText = titleElement.getText();
-                log.info("Password Prompt Title: " + titleText);
-                return titleText;
+                return titleElement.getText();
             } else {
                 log.warn("Password Prompt Title is not displayed.");
                 return null;
