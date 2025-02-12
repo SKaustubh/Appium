@@ -26,7 +26,8 @@ public class FullScreenPage {
     private static final By keyboardIcon = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivKeyboard']");
     private static final By mirroredFrame = By.xpath("//android.view.View[@resource-id='com.steris.vnc:id/frame_view']");
     private static final By disconnectButton = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivDisconnect']");
-    private static final By refreshBTN =By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivRefresh']");
+    private static final By popUPdisconnectBTN =By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/btnDisconnect']");
+    private static final By DisconnectPOPup =By.xpath("//android.widget.FrameLayout[@resource-id='com.steris.vnc:id/cvPopup']");
 
     // Locators for Password Prompt elements
     private static final By passwordField = By.xpath("//android.widget.EditText[@resource-id='com.steris.vnc:id/password']");
@@ -35,17 +36,6 @@ public class FullScreenPage {
     private static final By passwordPromptTitle = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvTitle']");
     private static final By cancelButton = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/btnCancel']");
     private static final By connectButton = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/btnConnect']");
-
-    // Method to click the "Connect" button on the start page
-    public void clickConnectButton() {
-        WebElement connectBtn = waitHelper.waitForElementToBeVisible(connectButton, 10);
-        if (connectBtn != null && connectBtn.isDisplayed()) {
-            log.info("Clicking on Connect Button on Start Page...");
-            connectBtn.click();
-        } else {
-            log.error("Connect Button on Start Page is not found!");
-        }
-    }
 
 
     // Method to check if Password Prompt is displayed
@@ -85,6 +75,37 @@ public class FullScreenPage {
             }
         } else {
             log.info("Password prompt is not displayed. Skipping Connect button click.");
+        }
+    }
+
+    //method to click cancel btn if not able to connect
+    public void clickPasswordPromptCancelButton() {
+        if (isPasswordPromptDisplayed()) {
+            WebElement cancelBtn = waitHelper.waitForElementToBeVisible(cancelButton, 10);
+            if (cancelBtn != null && cancelBtn.isDisplayed()) {
+                log.info("Clicking on Cancel Button in Password Prompt...");
+                cancelBtn.click();
+            } else {
+                log.error("Cancel Button in Password Prompt is not found!");
+            }
+        } else {
+            log.info("Password prompt is not displayed. Skipping Cancel button click.");
+        }
+    }
+
+
+    //method to click toggel button inside password form
+    public void clickVisibilityButton() {
+        if (isPasswordPromptDisplayed()) {
+            WebElement toggleBtn = waitHelper.waitForElementToBeVisible(togglePasswordVisibilityButton, 10);
+            if (toggleBtn != null && toggleBtn.isDisplayed()) {
+                log.info("Clicking on Toggle Button in Password Prompt...");
+                toggleBtn.click();
+            } else {
+                log.error("Toggle Button in Password Prompt is not found!");
+            }
+        } else {
+            log.info("Password prompt is not displayed. Skipping Toggle button click.");
         }
     }
 
@@ -168,6 +189,23 @@ public class FullScreenPage {
             disconnect.click();
         } else {
             log.error("Disconnect Button not found!");
+        }
+    }
+
+    //disconnect pop up form appears
+    public boolean disconnectPOPup() {
+        WebElement disconnectPopUp = waitHelper.waitForElementToBeVisible(DisconnectPOPup, 30);
+        return disconnectPopUp != null && disconnectPopUp.isDisplayed();
+    }
+
+    // Disconnect from Full-Screen View
+    public void disconnectBTNinsidePopUPform() {
+        WebElement disBTN = waitHelper.waitForElementToBeVisible(popUPdisconnectBTN, 30);
+        if (disBTN != null && disBTN.isDisplayed()) {
+            log.info("Clicking on Disconnect Button inside the Disconnect POP UP...");
+            disBTN.click();
+        } else {
+            log.error("Disconnect Button not found inside Disconnect POP UP!");
         }
     }
 }

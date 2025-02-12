@@ -57,7 +57,7 @@ public class FullScreenPageTest extends BaseTest {
 
     @Test(dataProvider = "deviceDataProvider")
     public void testFullScreenPageFunctionality(AllDeviceListPage.Device device) {
-        log.info("Starting Full Screen Page Functionality Test for Device: " + device.getName() + " | IP: " + device.getIpAddress());
+        log.info("Clicking on Connect button for Full screen mode Functionality Test for Device: " + device.getName() + " | IP: " + device.getIpAddress());
 
         // Click the Connect button for the specific device
         WebElement connectButton = device.getContainer().findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/btnConnect']"));
@@ -67,21 +67,40 @@ public class FullScreenPageTest extends BaseTest {
         if (fullScreenPage.isPasswordPromptDisplayed()) {
             log.info("Password prompt is displayed for device: " + device.getName());
 
+            //toggle button
+            fullScreenPage.clickVisibilityButton();
+
             // Enter the password
             fullScreenPage.enterPassword(password);
 
+            //device name +IP address
+            String title =fullScreenPage.getDeviceNameAndIPFromPrompt();
+            if (title != null) {
+                log.info("Title on the Password field: " + title);
+                test.pass("Not able to fetch title from the password form: " + device.getName());
+            }
             // Click the Connect button on the password prompt
             fullScreenPage.clickPasswordPromptConnectButton();
+
+            //cancel btn
+            fullScreenPage.clickPasswordPromptCancelButton();
 
             // Check for invalid password message
             String invalidPasswordMsg = fullScreenPage.getInvalidPasswordMessage();
             if (invalidPasswordMsg != null) {
                 log.error("Alert message on the Password field: " + invalidPasswordMsg);
                 Assert.fail("Failed to connect to device: " + device.getName() + " due to: " + invalidPasswordMsg);
+                //cancel btn
+                fullScreenPage.clickPasswordPromptCancelButton();
             }
+
+
         } else {
             log.info("No password prompt displayed for device: " + device.getName() + ". Proceeding to full-screen view.");
         }
+
+        //full screen functinality
+        log.info("Starting  Full screen mode Functionality Test for Device: " + device.getName() + " | IP: " + device.getIpAddress());
 
         // Verify Full-Screen Page is loaded
         boolean isFullScreenLoaded = fullScreenPage.isFullScreenLoaded();
@@ -109,8 +128,19 @@ public class FullScreenPageTest extends BaseTest {
 
         fullScreenPage.clickKeyboardIcon();
         test.pass("Clicked on Keyboard Icon.");
+        fullScreenPage.clickKeyboardIcon();
 
         fullScreenPage.disconnectFullScreen();
+        test.pass("Clicked on Disconnect Button.");
+
+       // to check whether the Disconnect pop up is visible or not
+        boolean isDisconnectPOPupVisible = fullScreenPage.disconnectPOPup();
+        log.info("Disconnect Pop UP is visible with messages: " + isDisconnectPOPupVisible);
+        Assert.assertTrue(isDisconnectPOPupVisible, "Disconnect Pop UP is not visible.");
+        test.pass("Disconnect Pop UP is visible.");
+
+        //clicking on disconnect button inside pop up
+        fullScreenPage.disconnectBTNinsidePopUPform();
         test.pass("Clicked on Disconnect Button.");
     }
 
