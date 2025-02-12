@@ -109,7 +109,7 @@ public class AllDeviceListPage {
                 if (connectButton != null) {
                     connectButton.click();
                     log.info("Clicked on the Connect button for device with IP: " + ipAddress);
-                    return;
+                    return ;
                 } else {
                     log.error("No Connect button found for device with IP: " + ipAddress);
                 }

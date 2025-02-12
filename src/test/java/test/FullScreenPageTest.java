@@ -52,9 +52,11 @@ public class FullScreenPageTest extends BaseTest {
     public void testFullScreenPageFunctionality(AllDeviceListPage.Device device) {
         log.info("Starting test for device: {} | IP: {}", device.getName(), device.getIpAddress());
 
+        // Connect button XPath will be based on the IP address (device.getIpAddress())
         WebElement connectButton = device.getContainer().findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/btnConnect']"));
         connectButton.click();
 
+        // Handle the password prompt if displayed
         if (fullScreenPage.isPasswordPromptDisplayed()) {
             log.info("Password prompt displayed for device: {}", device.getName());
             fullScreenPage.clickVisibilityButton();
@@ -76,6 +78,7 @@ public class FullScreenPageTest extends BaseTest {
             }
         }
 
+        // Check if Full-Screen page is loaded successfully
         if (!fullScreenPage.isFullScreenLoaded()) {
             log.error("Full-Screen Page did not load for device: {}", device.getName());
             test.fail("Full-Screen Page did not load.");
@@ -85,6 +88,7 @@ public class FullScreenPageTest extends BaseTest {
         log.info("Full-Screen Page loaded successfully for device: {}", device.getName());
         test.pass("Full-Screen Page loaded successfully.");
 
+        // Verify key UI elements
         Assert.assertTrue(fullScreenPage.isDeviceNameVisible(), "Device Name is not visible.");
         test.pass("Device Name is visible.");
         Assert.assertTrue(fullScreenPage.isOnlineIndicatorVisible(), "Online Indicator is not visible.");
@@ -92,6 +96,7 @@ public class FullScreenPageTest extends BaseTest {
         Assert.assertTrue(fullScreenPage.isKeyboardIconVisible(), "Keyboard Icon is not visible.");
         test.pass("Keyboard Icon is visible.");
 
+        // Click on the keyboard icon and then disconnect
         fullScreenPage.clickKeyboardIcon();
         test.pass("Clicked on Keyboard Icon.");
         fullScreenPage.clickKeyboardIcon();
@@ -99,12 +104,14 @@ public class FullScreenPageTest extends BaseTest {
         fullScreenPage.disconnectFullScreen();
         test.pass("Clicked on Disconnect Button.");
 
+        // Handle disconnect confirmation popup
         if (fullScreenPage.disconnectPOPup()) {
             fullScreenPage.disconnectBTNinsidePopUPform();
             test.pass("Confirmed disconnection.");
         }
     }
 
+    // Load password from config file
     private String loadPasswordFromConfig() {
         Properties properties = new Properties();
         try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
