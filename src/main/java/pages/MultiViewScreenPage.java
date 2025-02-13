@@ -41,6 +41,16 @@ public class MultiViewScreenPage {
         }
     }
 
+    public void clickAllDevicesButton() {
+        WebElement AllDevicesBtn = waitHelper.waitForElementToBeVisible(allDevicesButton, 10);
+        if (AllDevicesBtn != null && AllDevicesBtn.isDisplayed()) {
+            log.info("Clicking on All Devices Button...");
+            AllDevicesBtn.click();
+        } else {
+            log.error("All Devices Button is not found!");
+        }
+    }
+
     // Method to check if devices are connected (by checking if containers are present)
     public boolean areDevicesConnected() {
         List<WebElement> deviceContainers = driver.findElements(deviceContainerFrame);

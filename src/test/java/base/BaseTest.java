@@ -44,12 +44,6 @@ public class BaseTest {
         try {
             URL url = new URL(ConfigReader.getProperty("serverURL"));
             driver = new AndroidDriver(url, cap);
-
-
-            // Explicit wait for StartActivity to load after Splash
-
-
-
             System.out.println("App started successfully!");
         } catch (Exception e) {
             System.out.println("Error while starting Appium: " + e.getMessage());
@@ -82,9 +76,9 @@ public class BaseTest {
         String screenshotPath = "screenshots/" + testName + ".png";
         try {
             FileUtils.copyFile(screenshot, new File(screenshotPath));
-            System.out.println("📸 Screenshot captured: " + screenshotPath);
+            System.out.println(" Screenshot captured: " + screenshotPath);
         } catch (IOException e) {
-            System.out.println("❌ Error saving screenshot: " + e.getMessage());
+            System.out.println(" Error saving screenshot: " + e.getMessage());
         }
     }
 

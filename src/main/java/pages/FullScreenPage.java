@@ -145,7 +145,7 @@ public class FullScreenPage {
     // Check if Full-Screen Page is loaded
     public boolean isFullScreenLoaded() {
         WebElement frameView = waitHelper.waitForElementToBeVisible(mirroredFrame, 30);
-        return frameView != null && frameView.isDisplayed();
+        return frameView == null || !frameView.isDisplayed();
     }
 
     // Check if the device name is visible

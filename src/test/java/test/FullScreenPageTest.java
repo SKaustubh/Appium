@@ -3,6 +3,7 @@ package test;
 import base.BaseTest;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -88,7 +89,7 @@ public class FullScreenPageTest extends BaseTest {
         }
 
         // Check if Full-Screen page is loaded successfully
-        if (!fullScreenPage.isFullScreenLoaded()) {
+        if (fullScreenPage.isFullScreenLoaded()) {
             log.error("Full-Screen Page did not load for device: {}", device.getName());
             test.fail("Full-Screen Page did not load.");
             return;
@@ -121,7 +122,7 @@ public class FullScreenPageTest extends BaseTest {
     }
 
     // Load password from config file
-    private String loadPasswordFromConfig() {
+    public String loadPasswordFromConfig() {
         Properties properties = new Properties();
         try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
             if (input == null) {
@@ -134,5 +135,10 @@ public class FullScreenPageTest extends BaseTest {
             log.error("Error reading config.properties", ex);
             return null;
         }
+    }
+
+    @AfterClass
+    public void tearDownTest() {
+        log.info("Full Screen Page test completed.");
     }
 }
