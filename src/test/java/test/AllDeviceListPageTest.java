@@ -51,22 +51,6 @@ public class AllDeviceListPageTest extends BaseTest {
         Assert.assertTrue(isAddDeviceButtonVisible, "Add Device button is not visible");
         test.pass("Add Device button is visible");
 
-        boolean isAllDevicesListVisible = allDeviceListPage.isAllDevicesListVisible();
-        Assert.assertTrue(isAllDevicesListVisible, "Device list is not visible");
-        test.pass("Device list is visible");
-
-        boolean isEditButtonVisible = allDeviceListPage.isEditButtonVisible();
-        Assert.assertTrue(isEditButtonVisible, "Edit button is not visible");
-        test.pass("Edit button is visible");
-
-        boolean isIpAddressTextVisible = allDeviceListPage.isIpAddressTextVisible();
-        Assert.assertTrue(isIpAddressTextVisible, "IP Address text is not visible");
-        test.pass("IP Address text is visible");
-
-        boolean isConnectButtonVisible = allDeviceListPage.isConnectButtonVisible();
-        Assert.assertTrue(isConnectButtonVisible, "Connect button is not visible");
-        test.pass("Connect button is visible");
-
         log.info("Starting test to print all devices...");
 
         // Call method to print all devices

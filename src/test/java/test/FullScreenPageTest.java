@@ -42,7 +42,6 @@ public class FullScreenPageTest extends BaseTest {
         List<AllDeviceListPage.Device> devices = allDeviceListPage.getAllDevices();
 
         if(devices.isEmpty()){
-            log.info("No devices found. Redirecting to MultiviewScreen functionality...");
             return new Object[0][0];
             }
 
@@ -55,14 +54,14 @@ public class FullScreenPageTest extends BaseTest {
 
     @Test(dataProvider = "deviceDataProvider")
     public void testFullScreenPageFunctionality(AllDeviceListPage.Device device) {
-        log.info("Starting test for device: {} | IP: {}", device.getName(), device.getIpAddress());
-
         // Check if there are no devices
         if (allDeviceListPage.getAllDevices().isEmpty()) {
             log.info("No devices found. Navigating to MultiViewScreen...");
             test.pass("Navigated to MultiViewScreen due to no available devices.");
             return;
         }
+
+        log.info("Starting test for device: {} | IP: {}", device.getName(), device.getIpAddress());
 
         // Connect button XPath will be based on the IP address (device.getIpAddress())
         allDeviceListPage.connectToDeviceByIp(device.getIpAddress());

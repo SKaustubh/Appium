@@ -52,25 +52,6 @@ public class AllDeviceListPage {
         return element != null && element.isDisplayed();
     }
 
-    public boolean isAllDevicesListVisible() {
-        WebElement element = waitHelper.waitForElementToBeVisible(allDevicesList, 30);
-        return element != null && element.isDisplayed();
-    }
-
-    public boolean isEditButtonVisible() {
-        WebElement element = waitHelper.waitForElementToBeVisible(allDeviceEditButtons, 30);
-        return element != null && element.isDisplayed();
-    }
-
-    public boolean isIpAddressTextVisible() {
-        WebElement element = waitHelper.waitForElementToBeVisible(allIpAddresses, 30);
-        return element != null && element.isDisplayed();
-    }
-
-    public boolean isConnectButtonVisible() {
-        WebElement element = waitHelper.waitForElementToBeVisible(allConnectButtons, 30);
-        return element != null && element.isDisplayed();
-    }
 
     // Locator for device containers
     private static final By deviceContainersLocator = By.xpath("(//android.view.ViewGroup[@resource-id='com.steris.vnc:id/clBg'])[position() > 1]");
@@ -81,7 +62,6 @@ public class AllDeviceListPage {
         List<WebElement> deviceContainers = driver.findElements(deviceContainersLocator);
 
         if (deviceContainers.isEmpty()) {
-            log.info("No devices found in the list.");
             return devices;
         }
 
