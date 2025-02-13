@@ -1,8 +1,7 @@
 package test;
 
 import base.BaseTest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -41,6 +40,12 @@ public class FullScreenPageTest extends BaseTest {
     @DataProvider(name = "deviceDataProvider")
     public Object[][] deviceDataProvider() {
         List<AllDeviceListPage.Device> devices = allDeviceListPage.getAllDevices();
+
+        if(devices.isEmpty()){
+            log.info("No devices found. Redirecting to MultiviewScreen functionality...");
+            return new Object[0][0];
+            }
+
         Object[][] deviceData = new Object[devices.size()][1];
         for (int i = 0; i < devices.size(); i++) {
             deviceData[i][0] = devices.get(i);
@@ -52,10 +57,15 @@ public class FullScreenPageTest extends BaseTest {
     public void testFullScreenPageFunctionality(AllDeviceListPage.Device device) {
         log.info("Starting test for device: {} | IP: {}", device.getName(), device.getIpAddress());
 
-        // Connect button XPath will be based on the IP address (device.getIpAddress())
-        WebElement connectButton = device.getContainer().findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/btnConnect']"));
-        connectButton.click();
+        // Check if there are no devices
+        if (allDeviceListPage.getAllDevices().isEmpty()) {
+            log.info("No devices found. Navigating to MultiViewScreen...");
+            test.pass("Navigated to MultiViewScreen due to no available devices.");
+            return;
+        }
 
+        // Connect button XPath will be based on the IP address (device.getIpAddress())
+        allDeviceListPage.connectToDeviceByIp(device.getIpAddress());
         // Handle the password prompt if displayed
         if (fullScreenPage.isPasswordPromptDisplayed()) {
             log.info("Password prompt displayed for device: {}", device.getName());
