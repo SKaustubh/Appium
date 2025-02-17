@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="implemented test case for when no device is found">
+    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="i have added disconnected pop up list message">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenshots/testAllDeviceListPage.png" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/testAllDeviceListPage.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenshots/testFetchingLoaderScreen.png" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/testFetchingLoaderScreen.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screenshots/testFullScreenPageFunctionality.png" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/testFullScreenPageFunctionality.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/MultiViewScreenPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/MultiViewScreenPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenshots/testMultiViewScreenFunctionality.png" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/testMultiViewScreenFunctionality.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/AllDeviceListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/AllDeviceListPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/FullScreenPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/FullScreenPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/FullScreenPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/FullScreenPageTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/MultiViewScreenPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/MultiViewScreenPageTest.java" afterDir="false" />
     </list>
@@ -63,21 +68,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AppTest.executor": "Run",
-    "Application.LoginTest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "TestNG.C:/Users/bhara/IdeaProjects/Appium/testng.xml.executor": "Run",
-    "TestNG.FullScreenPageTest.testFullScreenPageFunctionality.executor": "Debug",
-    "TestNG.LoginTest.testLogin.executor": "Debug",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/bhara/IdeaProjects/Appium/src/test/java",
-    "last_opened_file_path": "C:/Users/bhara/IdeaProjects/Connection",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AppTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LoginTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;TestNG.C:/Users/bhara/IdeaProjects/Appium/testng.xml.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.FullScreenPageTest.testFullScreenPageFunctionality.executor&quot;: &quot;Debug&quot;,
+    &quot;TestNG.LoginTest.testLogin.executor&quot;: &quot;Debug&quot;,
+    &quot;TestNG.MultiViewScreenPageTest.testMultiViewScreenFunctionality.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/bhara/IdeaProjects/Appium/src/test/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bhara/IdeaProjects/Connection&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\bhara\IdeaProjects\Appium" />
@@ -294,7 +300,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739440098809</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Trying to connect from Connected/MultiView screen">
+      <option name="closed" value="true" />
+      <created>1739450972197</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1739450972197</updated>
+    </task>
+    <task id="LOCAL-00024" summary="i have added disconnected pop up list message">
+      <option name="closed" value="true" />
+      <created>1739786209994</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1739786209994</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -330,7 +352,9 @@
     <MESSAGE value="going to change the container's xpath so for that im adding commit message" />
     <MESSAGE value="implemented IP based search connection functionality with mapping of its container's xpath" />
     <MESSAGE value="implemented test case for when no device is found" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented test case for when no device is found" />
+    <MESSAGE value="Trying to connect from Connected/MultiView screen" />
+    <MESSAGE value="i have added disconnected pop up list message" />
+    <option name="LAST_COMMIT_MESSAGE" value="i have added disconnected pop up list message" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -3,6 +3,7 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utils.DisconnectedPopupHandler;
 import utils.LoggerUtility;
 import org.apache.logging.log4j.Logger;
 import utils.WaitHelper;
@@ -15,11 +16,17 @@ public class AllDeviceListPage {
     AndroidDriver driver;
     private static final Logger log = LoggerUtility.getLogger(AllDeviceListPage.class);
     WaitHelper waitHelper;
+    DisconnectedPopupHandler popupHandler;
 
     // Constructor
     public AllDeviceListPage(AndroidDriver driver) {
         this.driver = driver;
         waitHelper = new WaitHelper(driver);
+        popupHandler = new DisconnectedPopupHandler(driver);
+    }
+
+    public void handleDisconnectedPopupIfPresent() {
+        popupHandler.handlePopupIfPresent();
     }
 
     // Locators present on the screen
@@ -84,18 +91,18 @@ public class AllDeviceListPage {
 
         for (Device device : devices) {
             if (device.getIpAddress().equalsIgnoreCase(ipAddress)) {
-                log.info("Found device with IP: " + ipAddress);
+                log.info("Found device with : {}", ipAddress);
                 WebElement connectButton = device.getContainer().findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/btnConnect']"));
                 if (connectButton != null) {
                     connectButton.click();
-                    log.info("Clicked on the Connect button for device with IP: " + ipAddress);
+                    log.info("Clicked on the Connect button for device with IP: {}", ipAddress);
                     return ;
                 } else {
-                    log.error("No Connect button found for device with IP: " + ipAddress);
+                    log.error("No Connect button found for device with IP: {}", ipAddress);
                 }
             }
         }
-        log.error("Device with IP: " + ipAddress + " not found in the list.");
+        log.error("Device with : " + ipAddress + " not found in the list.");
     }
 
     // Inner class to represent a Device
