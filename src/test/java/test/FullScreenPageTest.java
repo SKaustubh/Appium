@@ -9,6 +9,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.AllDeviceListPage;
 import pages.FullScreenPage;
+import utils.DisconnectedPopupHandler;
 import utils.ExtentReportManager;
 import utils.LoggerUtility;
 import utils.WaitHelper;
@@ -26,6 +27,7 @@ public class FullScreenPageTest extends BaseTest {
     private WaitHelper waitHelper;
     private String password;
     private AllDeviceListPage allDeviceListPage;
+    private DisconnectedPopupHandler popHandler;
 
     @BeforeClass
     public void setUpTest() {
@@ -35,6 +37,7 @@ public class FullScreenPageTest extends BaseTest {
         fullScreenPage = new FullScreenPage(driver);
         waitHelper = new WaitHelper(driver);
         allDeviceListPage = new AllDeviceListPage(driver);
+        popHandler = new DisconnectedPopupHandler(driver);
         log.info("Setup complete, starting the Full Screen Page test.");
     }
 
@@ -55,6 +58,11 @@ public class FullScreenPageTest extends BaseTest {
 
     @Test(dataProvider = "deviceDataProvider")
     public void testFullScreenPageFunctionality(AllDeviceListPage.Device device) {
+
+        // Handle any disconnected pop-ups before starting the test
+        log.info("Checking for disconnected popup...");
+        popHandler.handlePopupIfPresent();
+
         // Check if there are no devices
         if (allDeviceListPage.getAllDevices().isEmpty()) {
             log.info("No devices found. Navigating to MultiViewScreen...");

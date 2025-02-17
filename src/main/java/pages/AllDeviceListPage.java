@@ -3,6 +3,7 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utils.DisconnectedPopupHandler;
 import utils.LoggerUtility;
 import org.apache.logging.log4j.Logger;
 import utils.WaitHelper;
@@ -15,11 +16,17 @@ public class AllDeviceListPage {
     AndroidDriver driver;
     private static final Logger log = LoggerUtility.getLogger(AllDeviceListPage.class);
     WaitHelper waitHelper;
+    DisconnectedPopupHandler popupHandler;
 
     // Constructor
     public AllDeviceListPage(AndroidDriver driver) {
         this.driver = driver;
         waitHelper = new WaitHelper(driver);
+        popupHandler = new DisconnectedPopupHandler(driver);
+    }
+
+    public void handleDisconnectedPopupIfPresent() {
+        popupHandler.handlePopupIfPresent();
     }
 
     // Locators present on the screen

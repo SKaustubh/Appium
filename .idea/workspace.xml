@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="implemented test case for when no device is found">
+    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="Trying to connect from Connected/MultiView screen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screenshots/testFullScreenPageFunctionality.png" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/testFullScreenPageFunctionality.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/MultiViewScreenPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/MultiViewScreenPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenshots/testMultiViewScreenFunctionality.png" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/testMultiViewScreenFunctionality.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/AllDeviceListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/AllDeviceListPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/FullScreenPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/FullScreenPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/AllDeviceListPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/AllDeviceListPageTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/FullScreenPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/FullScreenPageTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/MultiViewScreenPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/MultiViewScreenPageTest.java" afterDir="false" />
     </list>
@@ -71,6 +75,7 @@
     "TestNG.C:/Users/bhara/IdeaProjects/Appium/testng.xml.executor": "Run",
     "TestNG.FullScreenPageTest.testFullScreenPageFunctionality.executor": "Debug",
     "TestNG.LoginTest.testLogin.executor": "Debug",
+    "TestNG.MultiViewScreenPageTest.testMultiViewScreenFunctionality.executor": "Debug",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/bhara/IdeaProjects/Appium/src/test/java",
@@ -294,7 +299,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739440098809</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Trying to connect from Connected/MultiView screen">
+      <option name="closed" value="true" />
+      <created>1739450972197</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1739450972197</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -330,7 +343,8 @@
     <MESSAGE value="going to change the container's xpath so for that im adding commit message" />
     <MESSAGE value="implemented IP based search connection functionality with mapping of its container's xpath" />
     <MESSAGE value="implemented test case for when no device is found" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented test case for when no device is found" />
+    <MESSAGE value="Trying to connect from Connected/MultiView screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trying to connect from Connected/MultiView screen" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -353,6 +367,11 @@
           <url>file://$PROJECT_DIR$/src/test/java/base/BaseTest.java</url>
           <line>45</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pages/FullScreenPage.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

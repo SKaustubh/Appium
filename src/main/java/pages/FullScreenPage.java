@@ -3,6 +3,7 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utils.DisconnectedPopupHandler;
 import utils.LoggerUtility;
 import org.apache.logging.log4j.Logger;
 import utils.WaitHelper;
@@ -12,11 +13,17 @@ public class FullScreenPage {
     AndroidDriver driver;
     private static final Logger log = LoggerUtility.getLogger(FullScreenPage.class);
     WaitHelper waitHelper;
+    DisconnectedPopupHandler popupHandler;
 
     // Constructor
     public FullScreenPage(AndroidDriver driver) {
         this.driver = driver;
         waitHelper = new WaitHelper(driver);
+        popupHandler = new DisconnectedPopupHandler(driver);
+    }
+
+    public void handleDisconnectedPopupIfPresent() {
+        popupHandler.handlePopupIfPresent();
     }
 
     //  Locators for Full-Screen Page elements
@@ -145,8 +152,9 @@ public class FullScreenPage {
     // Check if Full-Screen Page is loaded
     public boolean isFullScreenLoaded() {
         WebElement frameView = waitHelper.waitForElementToBeVisible(mirroredFrame, 30);
-        return frameView == null || !frameView.isDisplayed();
+        return frameView != null && frameView.isDisplayed();
     }
+
 
     // Check if the device name is visible
     public boolean isDeviceNameVisible() {

@@ -53,7 +53,7 @@ public class BaseTest {
     @AfterMethod
     public void checkForAppCrash(ITestResult result) {
         if (result.getStatus() == ITestResult.FAILURE) {
-            System.out.println("❌ Test Failed: " + result.getName());
+            System.out.println("Test Failed: " + result.getName());
             logFailure(result);
         }
     }
@@ -62,7 +62,7 @@ public class BaseTest {
         String testName = result.getName();
         Throwable error = result.getThrowable();
 
-        System.out.println("❌ Error Details: " + error.getMessage());
+        System.out.println(" Error Details: " + error.getMessage());
 
         // Capture Screenshot on Failure
         captureScreenshot(testName);

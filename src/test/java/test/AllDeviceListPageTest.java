@@ -34,6 +34,10 @@ public class AllDeviceListPageTest extends BaseTest {
     public void testAllDeviceListPage() {
         log.info("Starting All Device List Page Test...");
 
+        // Handle Disconnected Popup if present
+        log.info("Checking for disconnected popup...");
+        allDeviceListPage.handleDisconnectedPopupIfPresent();
+
         // Check if all elements are visible
         boolean isRefreshButtonVisible = allDeviceListPage.isRefreshButtonVisible();
         Assert.assertTrue(isRefreshButtonVisible, "Refresh button is not visible");

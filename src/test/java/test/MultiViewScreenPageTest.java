@@ -10,13 +10,17 @@ import org.testng.annotations.Test;
 import pages.AllDeviceListPage;
 import pages.FullScreenPage;
 import pages.MultiViewScreenPage;
+import utils.DisconnectedPopupHandler;
 import utils.ExtentReportManager;
 import utils.LoggerUtility;
 import utils.WaitHelper;
 import com.aventstack.extentreports.ExtentTest;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 
 public class MultiViewScreenPageTest extends BaseTest {
     private MultiViewScreenPage multiViewScreenPage;
@@ -27,6 +31,7 @@ public class MultiViewScreenPageTest extends BaseTest {
     private WaitHelper waitHelper;
     private String password;
    private FullScreenPageTest fullScreenPageTest;
+    private DisconnectedPopupHandler disconnectedPopupHandler;
 
     @BeforeClass
     public void setUpTest() {
@@ -35,7 +40,7 @@ public class MultiViewScreenPageTest extends BaseTest {
 
 
         // Use loadPasswordFromConfig() method safely
-        this.password = ConfigReader.getProperty("device.password");
+        password = "5209";
 
 
 
@@ -47,6 +52,8 @@ public class MultiViewScreenPageTest extends BaseTest {
         allDeviceListPage = new AllDeviceListPage(driver);
         fullScreenPage = new FullScreenPage(driver);
         waitHelper = new WaitHelper(driver);
+        // Initialize DisconnectedPopupHandler
+        disconnectedPopupHandler = new DisconnectedPopupHandler(driver);
 
 
         log.info("Setup complete, starting the MultiView Screen Page test.");
@@ -56,6 +63,8 @@ public class MultiViewScreenPageTest extends BaseTest {
     public void testMultiViewScreenFunctionality() {
         log.info("Starting MultiView Screen Functionality Test...");
 
+        // Handle disconnected pop-ups if any
+        disconnectedPopupHandler.handlePopupIfPresent();
         // Click the Connected Devices button
         multiViewScreenPage.clickConnectedDevicesButton();
 
@@ -134,6 +143,8 @@ public class MultiViewScreenPageTest extends BaseTest {
 
         test.pass("MultiView Screen Page functionality validated successfully.");
     }
+
+
 
     @AfterClass
     public void tearDownTest() {
