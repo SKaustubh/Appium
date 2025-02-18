@@ -16,7 +16,10 @@ import utils.WaitHelper;
 import com.aventstack.extentreports.ExtentTest;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 
 public class MultiViewScreenPageTest extends BaseTest {
     private MultiViewScreenPage multiViewScreenPage;
@@ -32,13 +35,8 @@ public class MultiViewScreenPageTest extends BaseTest {
     public void setUpTest() {
         log.info("Setting up MultiView Screen Page Test...");
 
-
-
         // Use loadPasswordFromConfig() method safely
-        this.password = ConfigReader.getProperty("device.password");
-
-
-
+        password = loadPasswordFromConfig();
         // Use the same Extent Report instance
         test = ExtentReportManager.createTest("MultiView Screen Page Test");
 
@@ -47,7 +45,6 @@ public class MultiViewScreenPageTest extends BaseTest {
         allDeviceListPage = new AllDeviceListPage(driver);
         fullScreenPage = new FullScreenPage(driver);
         waitHelper = new WaitHelper(driver);
-
 
         log.info("Setup complete, starting the MultiView Screen Page test.");
     }
@@ -92,6 +89,7 @@ public class MultiViewScreenPageTest extends BaseTest {
 
             log.info("Found {} devices in All Device List Page. Connecting them...", devices.size());
 
+            // Loop over each device and attempt connection
             for (AllDeviceListPage.Device device : devices) {
                 log.info("Attempting to connect to device: {} | IP: {}", device.getName(), device.getIpAddress());
 
@@ -114,7 +112,7 @@ public class MultiViewScreenPageTest extends BaseTest {
                 }
 
                 // Ensure Full-Screen Page is loaded
-                if (fullScreenPage.isFullScreenLoaded()) {
+                if (!fullScreenPage.isFullScreenLoaded()) {
                     log.error("Full-Screen Page did not load for device: {}", device.getName());
                     test.fail("Full-Screen Page did not load.");
                     return;
@@ -123,17 +121,37 @@ public class MultiViewScreenPageTest extends BaseTest {
                 log.info("Full-Screen Page loaded successfully for device: {}", device.getName());
                 test.pass("Full-Screen Page loaded successfully.");
 
+                // Return to the Multi-View Screen after loading Full-Screen
                 multiViewScreenPage.clickConnectedDevicesButton();
                 log.info("Navigated to Connected Devices on Full-Screen Page.");
             }
 
-            // Re-run the if-block logic after all devices are connected
-            log.info("All devices are now connected. Re-running MultiView screen validation...");
-            testMultiViewScreenFunctionality();
+            // Now that all devices are connected, validate the Multi-View functionality again
+            log.info("All devices are now connected. Validating Multi-View screen...");
+            multiViewScreenPage.clickConnectedDevicesButton();
+            Assert.assertTrue(multiViewScreenPage.areDevicesConnected(), "Devices are not displayed correctly on MultiView screen.");
+            log.info("Multi-View screen validated successfully.");
         }
 
         test.pass("MultiView Screen Page functionality validated successfully.");
     }
+
+    // Load password from config file
+    public String loadPasswordFromConfig() {
+        Properties properties = new Properties();
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+            if (input == null) {
+                log.error("Unable to find config.properties");
+                return null;
+            }
+            properties.load(input);
+            return properties.getProperty("password");
+        } catch (IOException ex) {
+            log.error("Error reading config.properties", ex);
+            return null;
+        }
+    }
+
 
     @AfterClass
     public void tearDownTest() {
