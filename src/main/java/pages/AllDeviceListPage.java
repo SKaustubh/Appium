@@ -95,10 +95,10 @@ public class AllDeviceListPage {
                 WebElement connectButton = device.getContainer().findElement(By.xpath(".//android.widget.TextView[@resource-id='com.steris.vnc:id/btnConnect']"));
                 if (connectButton != null) {
                     connectButton.click();
-                    log.info("Clicked on the Connect button for device with IP: {}", ipAddress);
+                    log.info("Clicked on the Connect button for device with  {}", ipAddress);
                     return ;
                 } else {
-                    log.error("No Connect button found for device with IP: {}", ipAddress);
+                    log.error("No Connect button found for device with  {}", ipAddress);
                 }
             }
         }

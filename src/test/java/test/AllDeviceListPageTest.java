@@ -65,7 +65,7 @@ public class AllDeviceListPageTest extends BaseTest {
 
         // Print details of each device
         for (AllDeviceListPage.Device device : devices) {
-            log.info("Device Name: " + device.getName() + " | IP Address: " + device.getIpAddress());
+            log.info("Device Name: " + device.getName() + " | " + device.getIpAddress());
         }
 
         log.info("All device details printed successfully.");

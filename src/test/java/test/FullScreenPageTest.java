@@ -69,7 +69,7 @@ public class FullScreenPageTest extends BaseTest {
             return;
         }
 
-        log.info("Starting test for device: {} | IP: {}", device.getName(), device.getIpAddress());
+        log.info("Starting test for device: {} | {}", device.getName(), device.getIpAddress());
 
         // Connect button XPath will be based on the IP address (device.getIpAddress())
         allDeviceListPage.connectToDeviceByIp(device.getIpAddress());
