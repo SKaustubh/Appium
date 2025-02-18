@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="message update d and improved consoles">
+    <list default="true" id="a8a33dfd-cfcd-4271-94b1-d1d263cfd99c" name="Changes" comment="updated MultiViewScreenPageTest.java for better usability of handling null password handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screenshots/testMultiViewScreenFunctionality.png" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/testMultiViewScreenFunctionality.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/MultiViewScreenPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/MultiViewScreenPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/MultiViewScreenPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/MultiViewScreenPageTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -300,7 +301,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739871790192</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="updated MultiViewScreenPageTest.java for better usability of handling null password handling">
+      <option name="closed" value="true" />
+      <created>1739872733083</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1739872733083</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -337,7 +346,8 @@
     <MESSAGE value="implemented IP based search connection functionality with mapping of its container's xpath" />
     <MESSAGE value="implemented test case for when no device is found" />
     <MESSAGE value="message update d and improved consoles" />
-    <option name="LAST_COMMIT_MESSAGE" value="message update d and improved consoles" />
+    <MESSAGE value="updated MultiViewScreenPageTest.java for better usability of handling null password handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated MultiViewScreenPageTest.java for better usability of handling null password handling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

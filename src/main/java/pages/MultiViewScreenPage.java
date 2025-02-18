@@ -149,4 +149,9 @@ public class MultiViewScreenPage {
             log.error("Timeout while waiting for Full Focused View Button: " + e.getMessage());
         }
     }
+
+    // Retrieve connected devices list
+    public List<WebElement> getDeviceContainers() {
+        return driver.findElements(deviceContainerFrame);
+    }
 }
