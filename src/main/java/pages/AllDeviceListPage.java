@@ -9,7 +9,9 @@ import org.apache.logging.log4j.Logger;
 import utils.WaitHelper;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class AllDeviceListPage {
 
@@ -34,6 +36,7 @@ public class AllDeviceListPage {
     private static final By connectedDevicesButton = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvConnectedDevice']");
     private static final By addDeviceText = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvConnectedDevice']");
     private static final By addDeviceButton = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/imageView2']");
+    private static final By refreshLoader = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/progressBar']");
     private static final By allDevicesList = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvDevice']");
     private static final By allDeviceEditButtons = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivDevice']");
     private static final By allIpAddresses = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvIpAddress']");
@@ -42,6 +45,14 @@ public class AllDeviceListPage {
     public boolean isRefreshButtonVisible() {
         WebElement element = waitHelper.waitForElementToBeVisible(refreshButton, 30);
         return element != null && element.isDisplayed();
+    }
+
+    public void clickRefreshBtn(){
+        WebElement refreshBTN = waitHelper.waitForElementToBeVisible(refreshButton, 30);
+        if (refreshBTN!=null && refreshBTN.isDisplayed()){
+            refreshBTN.click();
+        }
+        else log.error("Refresh Btn is not clickable");
     }
 
     public boolean isConnectedDevicesButtonVisible() {
@@ -105,6 +116,19 @@ public class AllDeviceListPage {
         log.error("Device with : " + ipAddress + " not found in the list.");
     }
 
+
+    // Method to extract unique IP addresses from the list of devices
+    public Set<String> getUniqueIPAddresses() {
+        Set<String> uniqueIPs = new HashSet<>();
+        List<Device> devices = getAllDevices();
+
+        for (Device device : devices) {
+            uniqueIPs.add(device.getIpAddress()); // HashSet ensures uniqueness
+        }
+        return uniqueIPs;
+    }
+
+
     // Inner class to represent a Device
     public static class Device {
         private String name;
@@ -128,5 +152,7 @@ public class AllDeviceListPage {
         public WebElement getContainer() {
             return container;
         }
+
+
     }
 }

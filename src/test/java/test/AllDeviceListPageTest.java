@@ -10,8 +10,9 @@ import utils.ExtentReportManager;
 import utils.LoggerUtility;
 import utils.WaitHelper;
 import com.aventstack.extentreports.ExtentTest;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class AllDeviceListPageTest extends BaseTest {
 
@@ -30,9 +31,11 @@ public class AllDeviceListPageTest extends BaseTest {
         waitHelper = new WaitHelper(driver);
     }
 
-    @Test
+    @Test(priority = 1)
     public void testAllDeviceListPage() {
+
         log.info("Starting All Device List Page Test...");
+
 
         // Handle Disconnected Popup if present
         log.info("Checking for disconnected popup...");
@@ -73,6 +76,69 @@ public class AllDeviceListPageTest extends BaseTest {
 
         log.info("All Device List Page elements validated successfully.");
     }
+
+    @Test(priority = 2)
+    public void testUniqueIPAddress(){
+        log.info("Starting Unique IP address functionality");
+        List<AllDeviceListPage.Device> devices = allDeviceListPage.getAllDevices();
+
+        // Set to track unique IPs
+        Set<String> uniqueIPs = new HashSet<>();
+        boolean hasDuplicates = false;
+
+        for (AllDeviceListPage.Device device : devices) {
+            String ipAddress = device.getIpAddress();
+
+            // Check if the IP is already in the set
+            if (!uniqueIPs.add(ipAddress)) {
+                hasDuplicates = true;
+                log.info("Duplicate IP found: " + ipAddress);
+            }
+        }
+
+        // TestNG Assertion to fail the test if duplicates are found
+        Assert.assertFalse(hasDuplicates, "Duplicate IP addresses found!");
+        test.pass("Unique IP functionality checked");
+    }
+
+    // test case for finding new IP and also finding IPs which are removed after refresh
+    @Test(priority = 3)
+    public void RefreshForNewDevices(){
+        log.info("Starting refresh btn test case");
+        Set<String> beforeRefreshIPs = allDeviceListPage.getUniqueIPAddresses();
+
+
+        allDeviceListPage.clickRefreshBtn();
+        log.info("Clicked on refresh BTN");
+
+        Set<String> afterRefreshIPs =allDeviceListPage.getUniqueIPAddresses();
+
+        if(!allDeviceListPage.isAddDeviceButtonVisible()) return;
+        // identifying new IP address devices
+        Set<String> newDevices =new HashSet<>(afterRefreshIPs);
+        newDevices.removeAll(beforeRefreshIPs);
+
+        Set<String> removedDevices = new HashSet<>(beforeRefreshIPs);
+        removedDevices.removeAll(afterRefreshIPs);
+
+        if (newDevices.isEmpty() && removedDevices.isEmpty()){
+            log.info("No new devices found . After refresh Device List is same");
+        } else {
+            if (!newDevices.isEmpty()) {
+                System.out.println("New devices found: " + newDevices);
+            }
+            if (!removedDevices.isEmpty()) {
+                System.out.println("Devices removed: " + removedDevices);
+            }
+        }
+        test.pass("Refresh functionality checked");
+
+    }
+
+
+
+
+
 
     @AfterClass
     public void tearDownTest() {
