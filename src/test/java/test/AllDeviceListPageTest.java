@@ -1,11 +1,14 @@
 package test;
 
 import base.BaseTest;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.AllDeviceListPage;
+import pages.MultiViewScreenPage;
 import utils.ExtentReportManager;
 import utils.LoggerUtility;
 import utils.WaitHelper;
@@ -17,6 +20,7 @@ import java.util.Set;
 public class AllDeviceListPageTest extends BaseTest {
 
     AllDeviceListPage allDeviceListPage;
+    MultiViewScreenPage multiViewScreenPage;
     private static final org.apache.logging.log4j.Logger log = LoggerUtility.getLogger(AllDeviceListPageTest.class);
     ExtentTest test;
     WaitHelper waitHelper;
@@ -28,6 +32,7 @@ public class AllDeviceListPageTest extends BaseTest {
 
         // Initialize page objects
         allDeviceListPage = new AllDeviceListPage(driver);
+        multiViewScreenPage =new MultiViewScreenPage(driver);
         waitHelper = new WaitHelper(driver);
     }
 
@@ -132,11 +137,28 @@ public class AllDeviceListPageTest extends BaseTest {
             }
         }
         test.pass("Refresh functionality checked");
-
     }
 
 
+    @Test(priority = 4)
+    public void clickConnectedBtn(){
+        log.info("Starting Connected device functionality");
+        By  connectBtnLocator = allDeviceListPage.getConnectedDevicesButton();
+        if(!allDeviceListPage.isConnectedDevicesButtonVisible()) return;
 
+        WebElement connectBtn = driver.findElement(connectBtnLocator);
+        connectBtn.click();
+        By NodevicesMsgLocator =  multiViewScreenPage.getNoDevicesMsg();
+        WebElement alertMsg = driver.findElement(NodevicesMsgLocator);
+        if(!multiViewScreenPage.isNoDevicesAlertDisplayed()) {
+            log.info("Devices are connected");
+            return;
+        }
+        else log.info(alertMsg);
+
+        test.pass("Connected device functionality done");
+
+    }
 
 
 

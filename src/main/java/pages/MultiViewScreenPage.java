@@ -31,6 +31,8 @@ public class MultiViewScreenPage {
     private static final By fullScreenButton = By.xpath("(//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivBroadCast'])[1]");
     private static final By fullFocusedViewButton = By.xpath("(//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivDevice'])[2]");
 
+
+
     // Method to click the Connected Devices button with TimeoutException handling
     public void clickConnectedDevicesButton() {
         try {
@@ -153,5 +155,9 @@ public class MultiViewScreenPage {
     // Retrieve connected devices list
     public List<WebElement> getDeviceContainers() {
         return driver.findElements(deviceContainerFrame);
+    }
+
+    public By getNoDevicesMsg() {
+        return noDevicesMessage;
     }
 }

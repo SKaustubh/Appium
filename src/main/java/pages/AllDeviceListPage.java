@@ -1,6 +1,7 @@
 package pages;
 
 import io.appium.java_client.android.AndroidDriver;
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.DisconnectedPopupHandler;
@@ -39,7 +40,9 @@ public class AllDeviceListPage {
     private static final By refreshLoader = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/progressBar']");
     private static final By allDevicesList = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvDevice']");
     private static final By allDeviceEditButtons = By.xpath("//android.widget.ImageView[@resource-id='com.steris.vnc:id/ivDevice']");
+    @Getter
     private static final By allIpAddresses = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/tvIpAddress']");
+    @Getter
     private static final By allConnectButtons = By.xpath("//android.widget.TextView[@resource-id='com.steris.vnc:id/btnConnect']");
 
     public boolean isRefreshButtonVisible() {
@@ -128,6 +131,12 @@ public class AllDeviceListPage {
         return uniqueIPs;
     }
 
+    public By getConnectedDevicesButton() {
+        return connectedDevicesButton;
+    }
+
+
+
 
     // Inner class to represent a Device
     public static class Device {
@@ -153,6 +162,31 @@ public class AllDeviceListPage {
             return container;
         }
 
+        // Getter methods
+        public static By getRefreshButton() {
+            return refreshButton;
+        }
+
+
+        public static By getAddDeviceText() {
+            return addDeviceText;
+        }
+
+        public static By getAddDeviceButton() {
+            return addDeviceButton;
+        }
+
+        public static By getRefreshLoader() {
+            return refreshLoader;
+        }
+
+        public static By getAllDevicesList() {
+            return allDevicesList;
+        }
+
+        public static By getAllDeviceEditButtons() {
+            return allDeviceEditButtons;
+        }
 
     }
 }
